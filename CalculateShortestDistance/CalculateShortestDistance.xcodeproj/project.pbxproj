@@ -1,0 +1,270 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C4446BF01F107123007431E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446BEF1F107123007431E8 /* main.m */; };
+		C4446BFB1F10796C007431E8 /* DistanceCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446BFA1F10796C007431E8 /* DistanceCalculator.m */; };
+		C4446C011F109559007431E8 /* PDJudgeInFence.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446C001F109559007431E8 /* PDJudgeInFence.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C4446BEA1F107123007431E8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C4446BEC1F107123007431E8 /* CalculateShortestDistance */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CalculateShortestDistance; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4446BEF1F107123007431E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C4446BF91F10796C007431E8 /* DistanceCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceCalculator.h; sourceTree = "<group>"; };
+		C4446BFA1F10796C007431E8 /* DistanceCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceCalculator.m; sourceTree = "<group>"; };
+		C4446BFF1F109559007431E8 /* PDJudgeInFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDJudgeInFence.h; sourceTree = "<group>"; };
+		C4446C001F109559007431E8 /* PDJudgeInFence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDJudgeInFence.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4446BE91F107123007431E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C4446BE31F107123007431E8 = {
+			isa = PBXGroup;
+			children = (
+				C4446BEE1F107123007431E8 /* CalculateShortestDistance */,
+				C4446BED1F107123007431E8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C4446BED1F107123007431E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4446BEC1F107123007431E8 /* CalculateShortestDistance */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4446BEE1F107123007431E8 /* CalculateShortestDistance */ = {
+			isa = PBXGroup;
+			children = (
+				C4446BEF1F107123007431E8 /* main.m */,
+				C4446BF91F10796C007431E8 /* DistanceCalculator.h */,
+				C4446BFA1F10796C007431E8 /* DistanceCalculator.m */,
+				C4446BFF1F109559007431E8 /* PDJudgeInFence.h */,
+				C4446C001F109559007431E8 /* PDJudgeInFence.m */,
+			);
+			path = CalculateShortestDistance;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4446BEB1F107123007431E8 /* CalculateShortestDistance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4446BF31F107123007431E8 /* Build configuration list for PBXNativeTarget "CalculateShortestDistance" */;
+			buildPhases = (
+				C4446BE81F107123007431E8 /* Sources */,
+				C4446BE91F107123007431E8 /* Frameworks */,
+				C4446BEA1F107123007431E8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalculateShortestDistance;
+			productName = CalculateShortestDistance;
+			productReference = C4446BEC1F107123007431E8 /* CalculateShortestDistance */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4446BE41F107123007431E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = EGMade;
+				TargetAttributes = {
+					C4446BEB1F107123007431E8 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 3RQ4UGLT33;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C4446BE71F107123007431E8 /* Build configuration list for PBXProject "CalculateShortestDistance" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C4446BE31F107123007431E8;
+			productRefGroup = C4446BED1F107123007431E8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4446BEB1F107123007431E8 /* CalculateShortestDistance */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4446BE81F107123007431E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4446BFB1F10796C007431E8 /* DistanceCalculator.m in Sources */,
+				C4446BF01F107123007431E8 /* main.m in Sources */,
+				C4446C011F109559007431E8 /* PDJudgeInFence.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C4446BF11F107123007431E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C4446BF21F107123007431E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C4446BF41F107123007431E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 3RQ4UGLT33;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C4446BF51F107123007431E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 3RQ4UGLT33;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4446BE71F107123007431E8 /* Build configuration list for PBXProject "CalculateShortestDistance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4446BF11F107123007431E8 /* Debug */,
+				C4446BF21F107123007431E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4446BF31F107123007431E8 /* Build configuration list for PBXNativeTarget "CalculateShortestDistance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4446BF41F107123007431E8 /* Debug */,
+				C4446BF51F107123007431E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C4446BE41F107123007431E8 /* Project object */;
+}
