@@ -10,6 +10,7 @@
 		C4446BF01F107123007431E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446BEF1F107123007431E8 /* main.m */; };
 		C4446BFB1F10796C007431E8 /* DistanceCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446BFA1F10796C007431E8 /* DistanceCalculator.m */; };
 		C4446C011F109559007431E8 /* PDJudgeInFence.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446C001F109559007431E8 /* PDJudgeInFence.m */; };
+		C4BE9AC01F15D329008C22C3 /* ParallelCaculator.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE9ABF1F15D329008C22C3 /* ParallelCaculator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		C4446BFA1F10796C007431E8 /* DistanceCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceCalculator.m; sourceTree = "<group>"; };
 		C4446BFF1F109559007431E8 /* PDJudgeInFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDJudgeInFence.h; sourceTree = "<group>"; };
 		C4446C001F109559007431E8 /* PDJudgeInFence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDJudgeInFence.m; sourceTree = "<group>"; };
+		C4BE9ABE1F15D329008C22C3 /* ParallelCaculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelCaculator.h; sourceTree = "<group>"; };
+		C4BE9ABF1F15D329008C22C3 /* ParallelCaculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallelCaculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				C4446BEF1F107123007431E8 /* main.m */,
+				C4BE9ABE1F15D329008C22C3 /* ParallelCaculator.h */,
+				C4BE9ABF1F15D329008C22C3 /* ParallelCaculator.m */,
 				C4446BF91F10796C007431E8 /* DistanceCalculator.h */,
 				C4446BFA1F10796C007431E8 /* DistanceCalculator.m */,
 				C4446BFF1F109559007431E8 /* PDJudgeInFence.h */,
@@ -131,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4446BFB1F10796C007431E8 /* DistanceCalculator.m in Sources */,
+				C4BE9AC01F15D329008C22C3 /* ParallelCaculator.m in Sources */,
 				C4446BF01F107123007431E8 /* main.m in Sources */,
 				C4446C011F109559007431E8 /* PDJudgeInFence.m in Sources */,
 			);
@@ -263,6 +269,7 @@
 				C4446BF51F107123007431E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
