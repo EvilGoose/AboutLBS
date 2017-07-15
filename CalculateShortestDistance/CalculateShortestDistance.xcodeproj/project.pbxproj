@@ -10,6 +10,7 @@
 		C4446BF01F107123007431E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446BEF1F107123007431E8 /* main.m */; };
 		C4446BFB1F10796C007431E8 /* DistanceCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446BFA1F10796C007431E8 /* DistanceCalculator.m */; };
 		C4446C011F109559007431E8 /* PDJudgeInFence.m in Sources */ = {isa = PBXBuildFile; fileRef = C4446C001F109559007431E8 /* PDJudgeInFence.m */; };
+		C460EB321F19A394004AD1C3 /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C460EB311F19A394004AD1C3 /* CLLocation+YCLocation.m */; };
 		C4BE9AC01F15D329008C22C3 /* ParallelCaculator.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE9ABF1F15D329008C22C3 /* ParallelCaculator.m */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,8 @@
 		C4446BFA1F10796C007431E8 /* DistanceCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceCalculator.m; sourceTree = "<group>"; };
 		C4446BFF1F109559007431E8 /* PDJudgeInFence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDJudgeInFence.h; sourceTree = "<group>"; };
 		C4446C001F109559007431E8 /* PDJudgeInFence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDJudgeInFence.m; sourceTree = "<group>"; };
+		C460EB301F19A394004AD1C3 /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
+		C460EB311F19A394004AD1C3 /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
 		C4BE9ABE1F15D329008C22C3 /* ParallelCaculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelCaculator.h; sourceTree = "<group>"; };
 		C4BE9ABF1F15D329008C22C3 /* ParallelCaculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallelCaculator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +76,8 @@
 				C4446BFA1F10796C007431E8 /* DistanceCalculator.m */,
 				C4446BFF1F109559007431E8 /* PDJudgeInFence.h */,
 				C4446C001F109559007431E8 /* PDJudgeInFence.m */,
+				C460EB301F19A394004AD1C3 /* CLLocation+YCLocation.h */,
+				C460EB311F19A394004AD1C3 /* CLLocation+YCLocation.m */,
 			);
 			path = CalculateShortestDistance;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 				C4446BFB1F10796C007431E8 /* DistanceCalculator.m in Sources */,
 				C4BE9AC01F15D329008C22C3 /* ParallelCaculator.m in Sources */,
 				C4446BF01F107123007431E8 /* main.m in Sources */,
+				C460EB321F19A394004AD1C3 /* CLLocation+YCLocation.m in Sources */,
 				C4446C011F109559007431E8 /* PDJudgeInFence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
