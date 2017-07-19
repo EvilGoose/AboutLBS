@@ -12,4 +12,7 @@
 
 + (CGFloat)calculatePoint:(CGPoint)point distanceFrom:(NSArray<NSValue *> *)corners;
 
++ (CGFloat)calculateInsidePoint:(CGPoint)point shortestDistanceFrom:(NSArray<NSValue *> *)corners;
+
 @end
+

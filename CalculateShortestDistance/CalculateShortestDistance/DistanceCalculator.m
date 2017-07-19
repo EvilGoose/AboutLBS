@@ -11,6 +11,19 @@
 
 @implementation DistanceCalculator
 
+/*
+ ↑        ___________ M
+ |       ∕                     ∖   *(b)
+ |     ∕                          ∖
+ |   ∕       *(a)                  ∖ N
+ |   ∖                               ∕
+ |    	 ∖                           ∕
+ |         ∖____________∕
+ |⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯→
+ 
+ 对于a点，仅计算其到各边的最短距离;⏐
+ 对于b点，需要通过遍历，获取到离其最近的两个点：M，N，计算b到线段MN的最短距离
+ */
 + (CGFloat)calculatePoint:(CGPoint)point distanceFrom:(NSArray<NSValue *> *)corners {
     double distance;
     double minDistance0 = -1;
@@ -55,6 +68,43 @@
     }else {
         return result;
     }
+}
+
++ (CGFloat)calculateInsidePoint:(CGPoint)point shortestDistanceFrom:(NSArray<NSValue *> *)corners {
+    double distance;
+    CGFloat minDistance = -1;
+    NSValue *pointA;
+    NSValue *pointB;
+    
+        //    for (NSValue *obj in corners) {
+        //        corner = [obj CGPointValue];
+        //        distance = getDistance(point.x, point.y, corner.x, corner.y);
+        //        if (minDistance == -1) {
+        //            minDistance = distance;
+        //        }
+        //        minDistance = minDistance < distance ? minDistance : distance;
+        //    }
+    
+    for (int i = 0; i < corners.count; i ++) {
+        pointA = corners[i];
+        if ((i + 1) == corners.count) {
+            pointB = corners.firstObject;
+        }else {
+            pointB = corners[i + 1];
+        }
+        
+        distance = distanceToSegDist(point.x, point.y,
+                                     pointA.pointValue.x, pointA.pointValue.y,
+                                     pointB.pointValue.x, pointB.pointValue.y);
+        
+        if (minDistance == -1) {
+            minDistance = distance;
+        }
+        minDistance = minDistance < distance ? minDistance : distance;
+        i ++;
+    }
+    
+    return minDistance;
 }
 
     //计算两点间距离
