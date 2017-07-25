@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
+
+typedef void(^callBack)(UserSelectedAction action);
 
 @interface SettingTableViewController : UITableViewController
+
+/**反馈*/
+@property (copy, nonatomic)callBack callBack;
 
 @end

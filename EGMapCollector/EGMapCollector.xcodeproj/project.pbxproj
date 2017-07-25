@@ -17,6 +17,7 @@
 		C46AA9801F270E2400DCE49B /* EGMapCollectorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA97F1F270E2400DCE49B /* EGMapCollectorUITests.m */; };
 		C46AA9911F2713A800DCE49B /* EGMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9901F2713A800DCE49B /* EGMapView.m */; };
 		C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9961F27172300DCE49B /* SettingTableViewController.m */; };
+		C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9991F2720D600DCE49B /* ActionRouter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,9 @@
 		C46AA9901F2713A800DCE49B /* EGMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGMapView.m; sourceTree = "<group>"; };
 		C46AA9951F27172300DCE49B /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		C46AA9961F27172300DCE49B /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		C46AA9981F2720D600DCE49B /* ActionRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRouter.h; sourceTree = "<group>"; };
+		C46AA9991F2720D600DCE49B /* ActionRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRouter.m; sourceTree = "<group>"; };
+		C46AA99B1F27244200DCE49B /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +118,11 @@
 				C46AA9601F270E2300DCE49B /* ViewController.h */,
 				C46AA9611F270E2300DCE49B /* ViewController.m */,
 				C46AA9631F270E2300DCE49B /* Main.storyboard */,
+				C46AA99B1F27244200DCE49B /* Constants.h */,
 				C46AA9951F27172300DCE49B /* SettingTableViewController.h */,
 				C46AA9961F27172300DCE49B /* SettingTableViewController.m */,
+				C46AA9981F2720D600DCE49B /* ActionRouter.h */,
+				C46AA9991F2720D600DCE49B /* ActionRouter.m */,
 				C46AA98F1F2713A800DCE49B /* EGMapView.h */,
 				C46AA9901F2713A800DCE49B /* EGMapView.m */,
 				C46AA95A1F270E2200DCE49B /* Supporting Files */,
@@ -304,6 +311,7 @@
 			files = (
 				C46AA9621F270E2300DCE49B /* ViewController.m in Sources */,
 				C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */,
+				C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */,
 				C46AA95C1F270E2200DCE49B /* main.m in Sources */,
 				C46AA9911F2713A800DCE49B /* EGMapView.m in Sources */,
 				C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */,

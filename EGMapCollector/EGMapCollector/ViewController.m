@@ -7,11 +7,17 @@
 //
 
 #import "ViewController.h"
+
 #import "EGMapView.h"
 #import "SettingTableViewController.h"
+#import "ActionRouter.h"
 
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet EGMapView *mapView;
+
+/**add annotation mark*/
+@property (assign, nonatomic)BOOL addMark;
 
 @end
 
@@ -22,16 +28,19 @@
          [self presentAlert];
         
     }else {
-        [self.navigationController pushViewController:
-         [SettingTableViewController new] animated:YES];
-        
+        SettingTableViewController *settingController = [SettingTableViewController new];
+        [self.navigationController pushViewController:settingController animated:YES];
+
+        settingController.callBack = ^(UserSelectedAction action) {
+            
+        };        
     }
 }
 
 - (void)presentAlert {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"设置" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"功能选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"action1" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     
