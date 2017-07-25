@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VIF-9H-n6o">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--地图-->
+        <scene sceneID="yAo-hz-McI">
+            <objects>
+                <viewController id="5IK-uj-Qzo" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P2B-59-c0S"/>
+                        <viewControllerLayoutGuide type="bottom" id="awx-Gl-zdd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i71-oe-VR6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2cn-4T-uTx" customClass="EGMapView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="i71-oe-VR6" id="wuh-bc-oga"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2cn-4T-uTx" firstAttribute="top" secondItem="P2B-59-c0S" secondAttribute="bottom" id="JCV-fs-I8r"/>
+                            <constraint firstItem="2cn-4T-uTx" firstAttribute="leading" secondItem="i71-oe-VR6" secondAttribute="leading" id="O4r-0z-syP"/>
+                            <constraint firstAttribute="trailing" secondItem="2cn-4T-uTx" secondAttribute="trailing" id="Pvf-nq-tEf"/>
+                            <constraint firstItem="awx-Gl-zdd" firstAttribute="top" secondItem="2cn-4T-uTx" secondAttribute="bottom" id="Sxa-YY-CjY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="地图" id="x7z-6m-mou">
+                        <barButtonItem key="leftBarButtonItem" title="选项" id="i28-Gm-gBQ">
+                            <color key="tintColor" red="0.38618307359999998" green="0.38814252310000003" blue="0.51953125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="optionsClick:" destination="5IK-uj-Qzo" id="5eT-zY-Mx3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="设置" id="Ois-b0-YPz">
+                            <color key="tintColor" red="0.38618307359999998" green="0.38814252310000003" blue="0.51953125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="optionsClick:" destination="5IK-uj-Qzo" id="iqa-Rx-pdX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="2cn-4T-uTx" id="rnh-Ge-JD0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B7Q-IR-hZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="57" y="81"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QNS-Ks-Ciq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VIF-9H-n6o" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="um9-gU-M6X"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8mT-Me-v7m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5IK-uj-Qzo" kind="relationship" relationship="rootViewController" id="h9q-7v-f3U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yHt-Hq-LtZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-964" y="80.50974512743629"/>
+        </scene>
+    </scenes>
+</document>
