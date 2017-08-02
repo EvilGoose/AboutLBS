@@ -25,7 +25,7 @@ static ActionRouter *_instance;
 + (instancetype)router {
     return [[self alloc]init];
 }
-    // 为了严谨，也要重写copyWithZone 和 mutableCopyWithZone
+
 - (id)copyWithZone:(NSZone *)zone {
     return _instance;
 }
@@ -33,5 +33,7 @@ static ActionRouter *_instance;
 - (id)mutableCopyWithZone:(NSZone *)zone {
     return _instance;
 }
+
+
 
 @end

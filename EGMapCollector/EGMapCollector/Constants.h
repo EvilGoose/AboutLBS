@@ -10,9 +10,16 @@
 #define Constants_h
 
 typedef enum : NSUInteger {
-    UserSelectedAction1,
-    UserSelectedAction2,
-    UserSelectedAction3,
+    kUserSelectedNone = 0,
+    kUserSelectedLocation,
+    kUserSelectedCaculateDistance,
+    kUserSelectedGetDirection,
+    kUserSelectedJudgeZone,
+    kUserSelectedAddAnnotation,
+    kUserSelectedAddCustomAnnotation,
+    kUserSelectedAddOverlay,
+    kUserSelectedGeocoder,
+    kUserSelectedDegeocoder,
 } UserSelectedAction;
 
 

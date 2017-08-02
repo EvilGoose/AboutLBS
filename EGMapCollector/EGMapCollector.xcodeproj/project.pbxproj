@@ -10,7 +10,6 @@
 		C46AA95C1F270E2200DCE49B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA95B1F270E2200DCE49B /* main.m */; };
 		C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA95E1F270E2300DCE49B /* AppDelegate.m */; };
 		C46AA9621F270E2300DCE49B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9611F270E2300DCE49B /* ViewController.m */; };
-		C46AA9651F270E2300DCE49B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46AA9631F270E2300DCE49B /* Main.storyboard */; };
 		C46AA9671F270E2300DCE49B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C46AA9661F270E2300DCE49B /* Assets.xcassets */; };
 		C46AA96A1F270E2300DCE49B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46AA9681F270E2300DCE49B /* LaunchScreen.storyboard */; };
 		C46AA9751F270E2400DCE49B /* EGMapCollectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9741F270E2400DCE49B /* EGMapCollectorTests.m */; };
@@ -18,6 +17,8 @@
 		C46AA9911F2713A800DCE49B /* EGMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9901F2713A800DCE49B /* EGMapView.m */; };
 		C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9961F27172300DCE49B /* SettingTableViewController.m */; };
 		C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9991F2720D600DCE49B /* ActionRouter.m */; };
+		C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B788A51F31979500756C4A /* EGAnnotation.m */; };
+		C4DD998F1F31B341000D40AF /* EGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4DD998E1F31B341000D40AF /* EGAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +45,6 @@
 		C46AA95E1F270E2300DCE49B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C46AA9601F270E2300DCE49B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C46AA9611F270E2300DCE49B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C46AA9641F270E2300DCE49B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C46AA9661F270E2300DCE49B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C46AA9691F270E2300DCE49B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C46AA96B1F270E2400DCE49B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,6 +61,10 @@
 		C46AA9981F2720D600DCE49B /* ActionRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRouter.h; sourceTree = "<group>"; };
 		C46AA9991F2720D600DCE49B /* ActionRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRouter.m; sourceTree = "<group>"; };
 		C46AA99B1F27244200DCE49B /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C4B788A41F31979500756C4A /* EGAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGAnnotation.h; sourceTree = "<group>"; };
+		C4B788A51F31979500756C4A /* EGAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGAnnotation.m; sourceTree = "<group>"; };
+		C4DD998D1F31B341000D40AF /* EGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGAnnotationView.h; sourceTree = "<group>"; };
+		C4DD998E1F31B341000D40AF /* EGAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,13 +115,12 @@
 		C46AA9591F270E2100DCE49B /* EGMapCollector */ = {
 			isa = PBXGroup;
 			children = (
-				C46AA98E1F2710F700DCE49B /* New Group */,
+				C4B788A31F31976D00756C4A /* Custom Class */,
 				C46AA98D1F2710E600DCE49B /* Source */,
 				C46AA95D1F270E2300DCE49B /* AppDelegate.h */,
 				C46AA95E1F270E2300DCE49B /* AppDelegate.m */,
 				C46AA9601F270E2300DCE49B /* ViewController.h */,
 				C46AA9611F270E2300DCE49B /* ViewController.m */,
-				C46AA9631F270E2300DCE49B /* Main.storyboard */,
 				C46AA99B1F27244200DCE49B /* Constants.h */,
 				C46AA9951F27172300DCE49B /* SettingTableViewController.h */,
 				C46AA9961F27172300DCE49B /* SettingTableViewController.m */,
@@ -166,11 +169,15 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
-		C46AA98E1F2710F700DCE49B /* New Group */ = {
+		C4B788A31F31976D00756C4A /* Custom Class */ = {
 			isa = PBXGroup;
 			children = (
+				C4B788A41F31979500756C4A /* EGAnnotation.h */,
+				C4B788A51F31979500756C4A /* EGAnnotation.m */,
+				C4DD998D1F31B341000D40AF /* EGAnnotationView.h */,
+				C4DD998E1F31B341000D40AF /* EGAnnotationView.m */,
 			);
-			name = "New Group";
+			name = "Custom Class";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +291,6 @@
 			files = (
 				C46AA96A1F270E2300DCE49B /* LaunchScreen.storyboard in Resources */,
 				C46AA9671F270E2300DCE49B /* Assets.xcassets in Resources */,
-				C46AA9651F270E2300DCE49B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,11 +316,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C46AA9621F270E2300DCE49B /* ViewController.m in Sources */,
+				C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */,
 				C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */,
 				C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */,
 				C46AA95C1F270E2200DCE49B /* main.m in Sources */,
 				C46AA9911F2713A800DCE49B /* EGMapView.m in Sources */,
 				C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */,
+				C4DD998F1F31B341000D40AF /* EGAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,14 +358,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C46AA9631F270E2300DCE49B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C46AA9641F270E2300DCE49B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C46AA9681F270E2300DCE49B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -469,6 +469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evilGoose.EGMapCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -482,6 +483,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evilGoose.EGMapCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

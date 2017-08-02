@@ -10,7 +10,6 @@
 #import "EGMapView.h"
 
 @interface EGMapView ()
-<MKMapViewDelegate>
 
 @end
 
