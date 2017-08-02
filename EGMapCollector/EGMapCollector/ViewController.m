@@ -27,7 +27,10 @@ EGAnnotationViewDelegate
 @property (assign, nonatomic)UserSelectedAction actionState;
 
 /**annotations*/
-@property (copy, nonatomic)NSMutableArray<id<MKAnnotation>> *annotations;
+@property (copy, nonatomic)NSMutableArray<CLLocation *> *annotations;
+
+/**point*/
+@property (copy, nonatomic)NSMutableArray <id<MKAnnotation>>*points;
 
 /**location manager*/
 @property (strong, nonatomic)CLLocationManager *locationManager;
@@ -38,11 +41,11 @@ EGAnnotationViewDelegate
 /**location label	*/
 @property (strong, nonatomic)UILabel *locationLabel;
 
-/**覆盖mark*/
-@property (assign, nonatomic)BOOL overlayMark;
-
 /**coder*/
 @property (strong, nonatomic)CLGeocoder *geocoder;
+
+/**展示文字*/
+@property (copy, nonatomic)NSString *presentInfo;
 
 @end
 
@@ -60,6 +63,12 @@ EGAnnotationViewDelegate
      UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(showSettings)];
     UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStyleDone target:self action:@selector(clearAll)];
     self.navigationItem.rightBarButtonItems = @[settingItem, clearItem];
+}
+
+- (void)setPresentInfo:(NSString *)presentInfo {
+    _presentInfo = presentInfo;
+    self.locationLabel.text = presentInfo;
+    [self.mapView addSubview:self.locationLabel];
 }
 
 - (void)presentAlert {
@@ -80,7 +89,7 @@ EGAnnotationViewDelegate
         case kUserSelectedCaculateDistance:
       {
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"计算距离" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
+            [self caculateDistanceBetweenTwoLocation];
         }];
         [alert addAction:action];
       }
@@ -88,23 +97,17 @@ EGAnnotationViewDelegate
         case kUserSelectedGetDirection:
       {
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"获取方向" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
+            [self getCurrentHeading];
         }];
         [alert addAction:action];
       }
             break;
         case kUserSelectedJudgeZone:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"区域添加" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"区域判断" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self monitorEnterRegion];
         }];
         [alert addAction:action];
-        
-        
-        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"区域判断" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        [alert addAction:action1];
       }
             break;
         case kUserSelectedAddAnnotation:
@@ -167,7 +170,7 @@ EGAnnotationViewDelegate
 }
 
 - (void)clearAll {
-    [self.mapView removeAnnotations:self.annotations];
+    [self.mapView removeAnnotations:self.points];
 }
 
 #pragma mark - actions
@@ -184,11 +187,7 @@ EGAnnotationViewDelegate
     annotation.subtitle = @"来自系统";
     annotation.coordinate = CLLocationCoordinate2DMake(30.52 + arc4random_uniform(100)/100.0, 114.31 + arc4random_uniform(100)/100.0);
     
-    if (self.overlayMark) {
-        [self addLineToPoint:annotation.coordinate];
-    }
-    
-    [self.annotations addObject:annotation];
+    [self.annotations addObject:[[CLLocation alloc]initWithLatitude: annotation.coordinate.latitude longitude: annotation.coordinate.longitude]];
     [self.mapView addAnnotation:annotation];
 }
 
@@ -198,13 +197,9 @@ EGAnnotationViewDelegate
     annotation.subtitle = @"自定义";
     annotation.speed = 10;
     annotation.height = 5;
-     annotation.coordinate = CLLocationCoordinate2DMake(30.52 + arc4random_uniform(100)/100.0, 114.31 + arc4random_uniform(100)/100.0);
+    annotation.coordinate = CLLocationCoordinate2DMake(30.52 + arc4random_uniform(100)/100.0, 114.31 + arc4random_uniform(100)/100.0);
     
-    if (self.overlayMark) {
-        [self addLineToPoint:annotation.coordinate];
-    }
-    
-    [self.annotations addObject:annotation];
+  [self.annotations addObject:[[CLLocation alloc]initWithLatitude: annotation.coordinate.latitude longitude: annotation.coordinate.longitude]];
     [self.mapView addAnnotation:annotation];
     
 }
@@ -225,39 +220,84 @@ EGAnnotationViewDelegate
                                                               radius:5000];
     [self.mapView addOverlay:effectiveCircle];
     
-    self.overlayMark = YES;
-}
+    if (self.points.count > 1) {
+        CLLocationCoordinate2D *points = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * self.points.count);
+        [self.points enumerateObjectsUsingBlock:^(id<MKAnnotation>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            points[idx] = CLLocationCoordinate2DMake(obj.coordinate.latitude, obj.coordinate.longitude);
+        }];
+        
+        MKPolyline *polyline = [MKPolyline polylineWithCoordinates:points count:self.points.count];
+        [self.mapView addOverlay:polyline];
+     }
+ }
 
 - (void)userLocationReverseGeocode {
     CLLocation *location = [[CLLocation alloc]initWithLatitude:self.mapView.userLocation.coordinate.latitude longitude:self.mapView.userLocation.coordinate.longitude];
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        NSLog(@"%@", placemarks.firstObject.addressDictionary);
         
-        self.locationLabel.text = [NSString stringWithFormat:@"%f %f  \n => %@",
+        self.presentInfo = [NSString stringWithFormat:@"%f %f  \n => %@",
                                    self.mapView.userLocation.coordinate.latitude,
                                    self.mapView.userLocation.coordinate.longitude,
                                     placemarks.firstObject.addressDictionary[@"City"]];
-        
-        [self.mapView addSubview:self.locationLabel];
-
     }];
 }
 
 - (void)userLocationGeocode {
     [self.geocoder geocodeAddressString:@"湖北 武汉" completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        self.locationLabel.text = [NSString stringWithFormat:@"湖北 武汉 => \n  %f %f ",
+        self.presentInfo = [NSString stringWithFormat:@"湖北 武汉 => \n  %f %f ",
                                    placemarks.firstObject.region.center.latitude,
                                    placemarks.firstObject.region.center.longitude
                                  ];
-        
-        [self.mapView addSubview:self.locationLabel];
     }];
 }
 
+- (void)getCurrentHeading {
+    [self.locationManager startUpdatingHeading];
+    self.presentInfo = [NSString stringWithFormat:@"北偏 %f", self.locationManager.heading.trueHeading];
+}
+
+- (void)monitorEnterRegion {
+    CLRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(31.00, 114.00) radius:300 identifier:@"monitorRegionID"];
+    [self.locationManager startMonitoringForRegion:region];
+ }
+
+- (void)caculateDistanceBetweenTwoLocation {
+    [self addAnnotation];
+    [self addCustomAnnotation];
+    
+    NSLog(@"%@", self.annotations);
+    CLLocation *firstLocation = [[CLLocation alloc]initWithLatitude:self.annotations.firstObject.coordinate.latitude longitude:self.annotations.firstObject.coordinate.longitude];
+
+    CLLocation *lastLocation = [[CLLocation alloc]initWithLatitude:self.annotations.lastObject.coordinate.latitude longitude:self.annotations.lastObject.coordinate.longitude];
+    
+    self.presentInfo = [NSString stringWithFormat:@"两点间距 %f",
+                        [firstLocation distanceFromLocation:lastLocation]];
+}
+
+#pragma mark - location delegate
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray<CLLocation *> *)locations  {
+    NSLog(@"%@", locations.firstObject);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+    self.locationLabel.text = [NSString stringWithFormat:@"北偏 %f", newHeading.trueHeading];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+    self.presentInfo = @"开始检测是否进入观察区域";
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    self.presentInfo = @"检测到进入观察区域";
+}
 
 #pragma mark - mapview delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    [self.points addObject:annotation];
+    
     if ([annotation isKindOfClass:EGAnnotation.class]) {
         EGAnnotationView *view = [mapView dequeueReusableAnnotationViewWithIdentifier:[EGAnnotation reusedID]];
         if (!view) {
@@ -311,16 +351,6 @@ EGAnnotationViewDelegate
       	{0.3, 0.3}
     };
     [self.mapView setRegion:region animated:YES];
-}
-
-#pragma mark - location delegate
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray<CLLocation *> *)locations  {
-    NSLog(@"%@", locations.firstObject);
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-       didUpdateHeading:(CLHeading *)newHeading {
 }
 
 #pragma mark - lazy
@@ -381,6 +411,20 @@ EGAnnotationViewDelegate
         _geocoder = [[CLGeocoder alloc]init];
     }
     return _geocoder;
+}
+
+- (NSMutableArray<CLLocation *> *)annotations {
+    if (!_annotations) {
+        _annotations = [NSMutableArray array];
+    }
+    return _annotations;
+}
+
+- (NSMutableArray <id<MKAnnotation>>*)points {
+    if (!_points) {
+        _points = [NSMutableArray array];
+    }
+    return _points;
 }
 
 @end
