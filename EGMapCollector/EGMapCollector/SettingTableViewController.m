@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"功能选择";
 }
 
 #pragma mark - Table view data source

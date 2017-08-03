@@ -59,21 +59,20 @@ EGAnnotationViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
         // Do any additional setup after loading the view, typically from a nib.
-    self.actionState = kUserSelectedNone;
 	[self.view addSubview:self.mapView];
 
     self.title = @"地图开发";
+    
+    self.navigationController.navigationBar.tintColor = [UIColor blueColor];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"操作" style:UIBarButtonItemStyleDone target:self action:@selector(presentAlert)];
     
 	UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(showSettings)];
     UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStyleDone target:self action:@selector(clearAll)];
     self.navigationItem.rightBarButtonItems = @[settingItem, clearItem];
-}
+    
 
-- (void)setPresentInfo:(NSString *)presentInfo {
-    _presentInfo = presentInfo;
-    self.locationLabel.text = presentInfo;
-    [self.mapView addSubview:self.locationLabel];
+    
+    self.actionState = kUserSelectedNone;
 }
 
 - (void)presentAlert {
@@ -192,6 +191,23 @@ EGAnnotationViewDelegate
     settingController.callBack = ^(UserSelectedAction action) {
         weakSelf.actionState = action;
     };
+}
+
+#pragma mark - setter
+
+- (void)setPresentInfo:(NSString *)presentInfo {
+    _presentInfo = presentInfo;
+    self.locationLabel.text = presentInfo;
+    [self.mapView addSubview:self.locationLabel];
+}
+
+- (void)setActionState:(UserSelectedAction)actionState {
+    _actionState = actionState;
+    if (actionState == kUserSelectedNone) {
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor lightGrayColor];
+    }else {
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blueColor];
+    }
 }
 
 #pragma mark - actions
@@ -381,6 +397,7 @@ EGAnnotationViewDelegate
     [self.mapView removeOverlays:self.overlays];
     [self.overlays removeAllObjects];
 }
+
 #pragma mark - location delegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations  {
