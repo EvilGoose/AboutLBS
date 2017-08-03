@@ -11,7 +11,10 @@
 @interface SettingTableViewController ()
 
 /**标题*/
-@property (strong, nonatomic)NSDictionary *titles;
+@property (strong, nonatomic)NSArray *titles;
+
+/**标题与选项映射 字典*/
+@property (strong, nonatomic)NSDictionary *titlesMapDict;
 
 @end
 
@@ -19,19 +22,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.tintColor = [UIColor lightGrayColor]; 
 }
 
 #pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.callBack) return;
-    NSNumber *result = self.titles[self.titles.allKeys[indexPath.row]];
+    NSNumber *result = self.titlesMapDict[self.titles[indexPath.row]];
     self.callBack(result.integerValue);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-     return self.titles.allKeys.count;
+     return self.titles.count;
 }
 
 
@@ -40,14 +42,35 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
-        cell.textLabel.text = self.titles.allKeys[indexPath.row];
+        cell.textLabel.text = self.titles[indexPath.row];
     }
     return cell;
 }
 
-- (NSDictionary *)titles {
+
+- (NSArray<NSString *>*)titles {
     if (!_titles) {
-        _titles = @{
+        _titles = @[
+                    @"定位",
+                    @"测距",
+                    @"方向检测",
+                    @"区域检测",
+                    @"地理编码",
+                    @"反地理编码",
+                    @"添加系统大头针",
+                    @"添加自定义大头针",
+                    @"添加系统覆盖",
+                    @"添加自定义覆盖",
+                    @"路线规划",
+                    ];
+	}
+    
+    return _titles;
+}
+
+- (NSDictionary *)titlesMapDict {
+    if (!_titlesMapDict) {
+        _titlesMapDict = @{
                     @"定位":@(kUserSelectedLocation),
                     @"测距":@(kUserSelectedCaculateDistance),
                     @"方向检测":@(kUserSelectedGetDirection),
@@ -56,10 +79,12 @@
                     @"添加自定义大头针":@(kUserSelectedAddCustomAnnotation),
                     @"添加覆盖":@(kUserSelectedAddOverlay),
                     @"地理编码":@(kUserSelectedGeocoder),
-                    @"反地理编码":@(kUserSelectedDegeocoder)
+                    @"反地理编码":@(kUserSelectedDegeocoder),
+                    @"路线规划":@(kUserSelectedGuide),
+                    @"自定义覆盖":@(kUserSelectedGradientLine)
                     };
     }
-    return _titles;
+    return _titlesMapDict;
 }
 
 @end

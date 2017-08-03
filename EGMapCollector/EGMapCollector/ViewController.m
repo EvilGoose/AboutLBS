@@ -13,6 +13,8 @@
 #import "SettingTableViewController.h"
 
 #import "EGAnnotation.h"
+#import "EGOverlayRenderer.h"
+#import "GradientPolylineRenderer.h"
 
 @interface ViewController ()
 <
@@ -31,6 +33,9 @@ EGAnnotationViewDelegate
 
 /**point*/
 @property (copy, nonatomic)NSMutableArray <id<MKAnnotation>>*points;
+
+/**覆盖*/
+@property (copy, nonatomic)NSMutableArray <id<MKOverlay>>*overlays;
 
 /**location manager*/
 @property (strong, nonatomic)CLLocationManager *locationManager;
@@ -60,7 +65,7 @@ EGAnnotationViewDelegate
     self.title = @"地图开发";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"操作" style:UIBarButtonItemStyleDone target:self action:@selector(presentAlert)];
     
-     UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(showSettings)];
+	UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(showSettings)];
     UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStyleDone target:self action:@selector(clearAll)];
     self.navigationItem.rightBarButtonItems = @[settingItem, clearItem];
 }
@@ -74,12 +79,12 @@ EGAnnotationViewDelegate
 - (void)presentAlert {
      if (self.actionState == kUserSelectedNone) return;
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"功能项" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"操作" message:@"点击开始" preferredStyle:UIAlertControllerStyleActionSheet];
     
     switch (self.actionState) {
         case kUserSelectedLocation:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"开始定位" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"开始定位当前位置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self getUserCurrentLocation];
         }];
         [alert addAction:action];
@@ -88,7 +93,7 @@ EGAnnotationViewDelegate
             
         case kUserSelectedCaculateDistance:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"计算距离" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"计算随机两点距离" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self caculateDistanceBetweenTwoLocation];
         }];
         [alert addAction:action];
@@ -96,7 +101,7 @@ EGAnnotationViewDelegate
             break;
         case kUserSelectedGetDirection:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"获取方向" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"获取手机方向" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self getCurrentHeading];
         }];
         [alert addAction:action];
@@ -104,7 +109,7 @@ EGAnnotationViewDelegate
             break;
         case kUserSelectedJudgeZone:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"区域判断" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"判断区域" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self monitorEnterRegion];
         }];
         [alert addAction:action];
@@ -112,7 +117,7 @@ EGAnnotationViewDelegate
             break;
         case kUserSelectedAddAnnotation:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"添加大头针" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"添加系统大头针" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self addAnnotation];
         }];
         [alert addAction:action];
@@ -128,7 +133,7 @@ EGAnnotationViewDelegate
             break;
         case kUserSelectedAddOverlay:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"添加覆盖" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"添加各种覆盖" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self addOverlays];
         }];
         [alert addAction:action];
@@ -144,15 +149,35 @@ EGAnnotationViewDelegate
             break;
         case kUserSelectedDegeocoder:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"开始反地理编码" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"反地理编码所在位置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self userLocationReverseGeocode];
         }];
         [alert addAction:action];
       }
             break;
+            
+        case kUserSelectedGuide:
+      {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"到武夷山的路线" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self beginConfigurePath];
+        }];
+        [alert addAction:action];
+      }
+            break;
+            
+        case kUserSelectedGradientLine:
+      {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"自定义连线添加" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self addGradientLine];
+        }];
+        [alert addAction:action];
+      }
+            break;
+            
         default:
             break;
-    } 
+    }
+    
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:cancel];
     
@@ -171,9 +196,20 @@ EGAnnotationViewDelegate
 
 - (void)clearAll {
     [self.mapView removeAnnotations:self.points];
+    [self.points removeAllObjects];
+    [self.annotations removeAllObjects];
+    
+    [self.mapView removeOverlays:self.overlays];
+    [self.overlays removeAllObjects];
 }
 
 #pragma mark - actions
+
+- (void)getGPSWithLocation:(CLLocation *)location {
+    CLLocationAccuracy horizontalAccuracy = location.horizontalAccuracy;
+    //这个值越小越准确
+    self.presentInfo = [NSString stringWithFormat:@"GPS失准度 %f", horizontalAccuracy];
+}
 
 - (void)getUserCurrentLocation {
     self.mapView.showsUserLocation = YES;
@@ -187,6 +223,7 @@ EGAnnotationViewDelegate
     annotation.subtitle = @"来自系统";
     annotation.coordinate = CLLocationCoordinate2DMake(30.52 + arc4random_uniform(100)/100.0, 114.31 + arc4random_uniform(100)/100.0);
     
+    [self addLineToPoint:annotation.coordinate];
     [self.annotations addObject:[[CLLocation alloc]initWithLatitude: annotation.coordinate.latitude longitude: annotation.coordinate.longitude]];
     [self.mapView addAnnotation:annotation];
 }
@@ -199,9 +236,8 @@ EGAnnotationViewDelegate
     annotation.height = 5;
     annotation.coordinate = CLLocationCoordinate2DMake(30.52 + arc4random_uniform(100)/100.0, 114.31 + arc4random_uniform(100)/100.0);
     
-  [self.annotations addObject:[[CLLocation alloc]initWithLatitude: annotation.coordinate.latitude longitude: annotation.coordinate.longitude]];
+    [self.annotations addObject:[[CLLocation alloc]initWithLatitude: annotation.coordinate.latitude longitude: annotation.coordinate.longitude]];
     [self.mapView addAnnotation:annotation];
-    
 }
 
 - (void)addLineToPoint:(CLLocationCoordinate2D)point {
@@ -211,8 +247,8 @@ EGAnnotationViewDelegate
 	pointsCoordinate[0] = self.annotations.lastObject.coordinate;
     pointsCoordinate[1] = point;
     
-    MKPolyline *ployLine = [MKPolyline polylineWithCoordinates:pointsCoordinate count:2];
-    [self.mapView addOverlay:ployLine];
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:pointsCoordinate count:2];
+    [self.mapView addOverlay:polyline];
 }
 
 - (void)addOverlays {
@@ -229,7 +265,34 @@ EGAnnotationViewDelegate
         MKPolyline *polyline = [MKPolyline polylineWithCoordinates:points count:self.points.count];
         [self.mapView addOverlay:polyline];
      }
- }
+    
+    
+    
+    
+//    
+//    MKMapRect rect = {
+//        {0	, 0},
+//        {100, 100}
+//    };
+//    EGOverlay  *overlay = [[EGOverlay alloc]initWithRect:rect];
+//    [self.mapView addOverlay:overlay];
+//    MKMapRect mapRect = MKMapRectNull;
+//    for (id<MKAnnotation> obj in self.points) {
+//        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(obj.coordinate.latitude, obj.coordinate.longitude);
+//        MKMapPoint annotationPoint = MKMapPointForCoordinate(coordinate);
+//        MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
+//        
+//        if (MKMapRectIsNull(mapRect)) {
+//            mapRect = pointRect;
+//        } else {
+//            mapRect = MKMapRectUnion(mapRect, pointRect);
+//        }
+//    }
+//    mapRect = [self.mapView mapRectThatFits:mapRect edgePadding:UIEdgeInsetsMake(10, 10, 10, 10)];
+//    [self.mapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(10, 10, 10, 10) animated:NO];
+//    [self.mapView addOverlay:[[EGOverlay alloc] initWithRect:mapRect] level:1];
+    
+}
 
 - (void)userLocationReverseGeocode {
     CLLocation *location = [[CLLocation alloc]initWithLatitude:self.mapView.userLocation.coordinate.latitude longitude:self.mapView.userLocation.coordinate.longitude];
@@ -262,23 +325,68 @@ EGAnnotationViewDelegate
  }
 
 - (void)caculateDistanceBetweenTwoLocation {
+    [self clearAll];
+    
     [self addAnnotation];
     [self addCustomAnnotation];
     
-    NSLog(@"%@", self.annotations);
     CLLocation *firstLocation = [[CLLocation alloc]initWithLatitude:self.annotations.firstObject.coordinate.latitude longitude:self.annotations.firstObject.coordinate.longitude];
 
     CLLocation *lastLocation = [[CLLocation alloc]initWithLatitude:self.annotations.lastObject.coordinate.latitude longitude:self.annotations.lastObject.coordinate.longitude];
     
     self.presentInfo = [NSString stringWithFormat:@"两点间距 %f",
                         [firstLocation distanceFromLocation:lastLocation]];
+    
+    MKCoordinateRegion region =
+  {CLLocationCoordinate2DMake
+        (
+         .5 * (self.annotations.firstObject.coordinate.latitude + self.annotations.lastObject.coordinate.latitude),
+         .5 * (self.annotations.firstObject.coordinate.longitude + self.annotations.lastObject.coordinate.longitude)
+         ),
+      {
+        1.3 * fabs(self.annotations.firstObject.coordinate.latitude - self.annotations.lastObject.coordinate.latitude),
+        1.3 * fabs(self.annotations.firstObject.coordinate.longitude - self.annotations.lastObject.coordinate.longitude)
+      }
+    };
+    
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (void)beginConfigurePath {
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];//导航请求
+    request.source = [MKMapItem mapItemForCurrentLocation];
+    
+    [self.geocoder geocodeAddressString:@"武夷山" completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (placemarks.count == 0 || error)  return ;
+        
+            //终点
+         request.destination = [[MKMapItem alloc]initWithPlacemark:[[MKPlacemark alloc]initWithPlacemark: placemarks.lastObject]];
+        
+        MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
+        [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
+            if (error)  return ;
+            for (MKRoute *route in response.routes) {
+                [self.mapView addOverlay:route.polyline];
+            }
+        }];
+    }];
+}
+
+- (void)addGradientLine {
+    CLLocationCoordinate2D *pointsCoordinate = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * self.annotations.count);
+    [self.annotations enumerateObjectsUsingBlock:^(CLLocation * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        pointsCoordinate[idx] = obj.coordinate;
+    }];
+    
+    GradientPolylineOverlay *polyline = [[GradientPolylineOverlay alloc] initWithPoints:pointsCoordinate velocity:malloc(sizeof(float)*self.annotations.count) count:self.annotations.count];
+    [self.mapView addOverlay:polyline];
 }
 
 #pragma mark - location delegate
 
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray<CLLocation *> *)locations  {
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations  {
     NSLog(@"%@", locations.firstObject);
+    [self getGPSWithLocation:locations.firstObject];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
@@ -302,7 +410,6 @@ EGAnnotationViewDelegate
         EGAnnotationView *view = [mapView dequeueReusableAnnotationViewWithIdentifier:[EGAnnotation reusedID]];
         if (!view) {
             view = [[EGAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:[EGAnnotation reusedID]];
-            view.image = [UIImage imageNamed:@"fence"];
             view.delegate = self;
         }
         return view;
@@ -312,20 +419,35 @@ EGAnnotationViewDelegate
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
+    [self.overlays addObject:overlay];
     
-    if ([overlay isKindOfClass:[MKCircle class]]) {
+     if ([overlay isKindOfClass:[MKCircle class]]) {
         MKCircleRenderer *circleRend = [[MKCircleRenderer alloc] initWithCircle:overlay];
         circleRend.lineWidth = 3;
         circleRend.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.1];;
         circleRend.strokeColor = [UIColor blueColor];
-        return circleRend;
-    }else if ([overlay isKindOfClass:[MKPolyline class]]) {
-            //MKPolylineView iOS8 废弃了
-        MKOverlayPathRenderer *render = [[MKOverlayPathRenderer alloc] initWithOverlay:overlay];
+
+         return circleRend;
+         
+    }else if ([overlay isKindOfClass:[MKPolyline class]]){
+        MKPolylineRenderer *render = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
         render.lineWidth = 3.f;
-        render.strokeColor = [UIColor orangeColor];
-        render.fillColor = [UIColor clearColor];
-        render.lineDashPattern = @[@3, @10];
+        if (self.actionState == kUserSelectedGuide) {
+            render.strokeColor = [UIColor greenColor];
+        }else {
+            render.strokeColor = [UIColor orangeColor];
+            render.lineDashPattern = @[@3, @10];//虚线
+        }
+        
+        return render;
+        
+    }else if([overlay isKindOfClass:[EGOverlay class]]){
+        EGOverlayRenderer *render = [[EGOverlayRenderer alloc] initWithOverlay:overlay];
+        return render;
+        
+    }else if([overlay isKindOfClass:[GradientPolylineOverlay class]]){
+        GradientPolylineRenderer *render = [[GradientPolylineRenderer alloc] initWithOverlay:overlay];
+        render.lineWidth = 8.f;
         
         return render;
     }
@@ -333,13 +455,45 @@ EGAnnotationViewDelegate
     return nil;
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState {
+    switch (newState) {
+        case MKAnnotationViewDragStateNone:
+            NSLog(@"MKAnnotationViewDragStateNone");
+            break;
+            
+        case MKAnnotationViewDragStateStarting:
+            NSLog(@"MKAnnotationViewDragStateStarting");
+            break;
+            
+        case MKAnnotationViewDragStateDragging:
+            NSLog(@"MKAnnotationViewDragStateDragging");
+            break;
+            
+        case MKAnnotationViewDragStateCanceling:
+            NSLog(@"MKAnnotationViewDragStateCanceling");
+            view.dragState = MKAnnotationViewDragStateNone;
+            break;
+            
+        case MKAnnotationViewDragStateEnding:
+            NSLog(@"MKAnnotationViewDragStateEnding");
+            view.dragState = MKAnnotationViewDragStateNone;
+            break;
+            
+        default:
+            break;
+    }
+}
+
 #pragma mark - custom annotation delegate
 
 - (void)didSelectedAnnotationView:(EGAnnotationView *)view {
-    NSLog(@"我被选中");
+    NSLog(@"%@被选中", view);
+    
 }
 
-- (void)didDeselectedAnnotationView:(EGAnnotationView *)view {}
+- (void)didDeselectedAnnotationView:(EGAnnotationView *)view {
+    NSLog(@"%@不再选中", view);
+}
 
 - (void)didClickedAnnotationViewButton:(EGAnnotationView *)view {
     NSLog(@"点击了按钮");
@@ -390,7 +544,7 @@ EGAnnotationViewDelegate
 
 - (UILabel *)locationLabel {
     if (!_locationLabel) {
-        _locationLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, 120, 40)];
+        _locationLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 95, 120, 40)];
         _locationLabel.font = [UIFont systemFontOfSize:10];
         _locationLabel.numberOfLines = 2;
         _locationLabel.backgroundColor = [UIColor whiteColor];
@@ -425,6 +579,13 @@ EGAnnotationViewDelegate
         _points = [NSMutableArray array];
     }
     return _points;
+}
+
+- (NSMutableArray <id<MKOverlay>>*)overlays {
+    if (!_overlays) {
+        _overlays = [NSMutableArray array];
+    }
+    return _overlays;
 }
 
 @end

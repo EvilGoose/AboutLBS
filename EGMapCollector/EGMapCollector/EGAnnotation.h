@@ -10,7 +10,6 @@
 #import <MapKit/MapKit.h>
 #import "EGAnnotationView.h"
 
-
 @interface EGAnnotation : NSObject<MKAnnotation>
 
 /**原有属性*/

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4561F9E1F32F15000808825 /* EGOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561F9D1F32F15000808825 /* EGOverlay.m */; };
+		C4561FA11F32F1E900808825 /* EGOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561FA01F32F1E900808825 /* EGOverlayRenderer.m */; };
+		C4561FA41F33037800808825 /* EGPolylineOverLay.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561FA31F33037800808825 /* EGPolylineOverLay.m */; };
+		C4561FA71F3303ED00808825 /* GradientPolylineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561FA61F3303ED00808825 /* GradientPolylineOverlay.m */; };
+		C4561FAA1F33044800808825 /* GradientPolylineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561FA91F33044800808825 /* GradientPolylineRenderer.m */; };
 		C46AA95C1F270E2200DCE49B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA95B1F270E2200DCE49B /* main.m */; };
 		C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA95E1F270E2300DCE49B /* AppDelegate.m */; };
 		C46AA9621F270E2300DCE49B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9611F270E2300DCE49B /* ViewController.m */; };
@@ -14,7 +19,6 @@
 		C46AA96A1F270E2300DCE49B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46AA9681F270E2300DCE49B /* LaunchScreen.storyboard */; };
 		C46AA9751F270E2400DCE49B /* EGMapCollectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9741F270E2400DCE49B /* EGMapCollectorTests.m */; };
 		C46AA9801F270E2400DCE49B /* EGMapCollectorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA97F1F270E2400DCE49B /* EGMapCollectorUITests.m */; };
-		C46AA9911F2713A800DCE49B /* EGMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9901F2713A800DCE49B /* EGMapView.m */; };
 		C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9961F27172300DCE49B /* SettingTableViewController.m */; };
 		C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9991F2720D600DCE49B /* ActionRouter.m */; };
 		C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B788A51F31979500756C4A /* EGAnnotation.m */; };
@@ -39,6 +43,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4561F9C1F32F15000808825 /* EGOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOverlay.h; sourceTree = "<group>"; };
+		C4561F9D1F32F15000808825 /* EGOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOverlay.m; sourceTree = "<group>"; };
+		C4561F9F1F32F1E900808825 /* EGOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOverlayRenderer.h; sourceTree = "<group>"; };
+		C4561FA01F32F1E900808825 /* EGOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOverlayRenderer.m; sourceTree = "<group>"; };
+		C4561FA21F33037800808825 /* EGPolylineOverLay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGPolylineOverLay.h; sourceTree = "<group>"; };
+		C4561FA31F33037800808825 /* EGPolylineOverLay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGPolylineOverLay.m; sourceTree = "<group>"; };
+		C4561FA51F3303ED00808825 /* GradientPolylineOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientPolylineOverlay.h; sourceTree = "<group>"; };
+		C4561FA61F3303ED00808825 /* GradientPolylineOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientPolylineOverlay.m; sourceTree = "<group>"; };
+		C4561FA81F33044800808825 /* GradientPolylineRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientPolylineRenderer.h; sourceTree = "<group>"; };
+		C4561FA91F33044800808825 /* GradientPolylineRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientPolylineRenderer.m; sourceTree = "<group>"; };
 		C46AA9571F270E2100DCE49B /* EGMapCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EGMapCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C46AA95B1F270E2200DCE49B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C46AA95D1F270E2300DCE49B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -54,8 +68,6 @@
 		C46AA97B1F270E2400DCE49B /* EGMapCollectorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EGMapCollectorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C46AA97F1F270E2400DCE49B /* EGMapCollectorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EGMapCollectorUITests.m; sourceTree = "<group>"; };
 		C46AA9811F270E2500DCE49B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C46AA98F1F2713A800DCE49B /* EGMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGMapView.h; sourceTree = "<group>"; };
-		C46AA9901F2713A800DCE49B /* EGMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGMapView.m; sourceTree = "<group>"; };
 		C46AA9951F27172300DCE49B /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		C46AA9961F27172300DCE49B /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		C46AA9981F2720D600DCE49B /* ActionRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRouter.h; sourceTree = "<group>"; };
@@ -115,19 +127,16 @@
 		C46AA9591F270E2100DCE49B /* EGMapCollector */ = {
 			isa = PBXGroup;
 			children = (
-				C4B788A31F31976D00756C4A /* Custom Class */,
-				C46AA98D1F2710E600DCE49B /* Source */,
 				C46AA95D1F270E2300DCE49B /* AppDelegate.h */,
 				C46AA95E1F270E2300DCE49B /* AppDelegate.m */,
 				C46AA9601F270E2300DCE49B /* ViewController.h */,
 				C46AA9611F270E2300DCE49B /* ViewController.m */,
-				C46AA99B1F27244200DCE49B /* Constants.h */,
 				C46AA9951F27172300DCE49B /* SettingTableViewController.h */,
 				C46AA9961F27172300DCE49B /* SettingTableViewController.m */,
 				C46AA9981F2720D600DCE49B /* ActionRouter.h */,
 				C46AA9991F2720D600DCE49B /* ActionRouter.m */,
-				C46AA98F1F2713A800DCE49B /* EGMapView.h */,
-				C46AA9901F2713A800DCE49B /* EGMapView.m */,
+				C4B788A31F31976D00756C4A /* Custom Class */,
+				C46AA98D1F2710E600DCE49B /* Source */,
 				C46AA95A1F270E2200DCE49B /* Supporting Files */,
 			);
 			path = EGMapCollector;
@@ -162,6 +171,7 @@
 		C46AA98D1F2710E600DCE49B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C46AA99B1F27244200DCE49B /* Constants.h */,
 				C46AA9661F270E2300DCE49B /* Assets.xcassets */,
 				C46AA9681F270E2300DCE49B /* LaunchScreen.storyboard */,
 				C46AA96B1F270E2400DCE49B /* Info.plist */,
@@ -176,6 +186,16 @@
 				C4B788A51F31979500756C4A /* EGAnnotation.m */,
 				C4DD998D1F31B341000D40AF /* EGAnnotationView.h */,
 				C4DD998E1F31B341000D40AF /* EGAnnotationView.m */,
+				C4561FA21F33037800808825 /* EGPolylineOverLay.h */,
+				C4561FA31F33037800808825 /* EGPolylineOverLay.m */,
+				C4561F9C1F32F15000808825 /* EGOverlay.h */,
+				C4561F9D1F32F15000808825 /* EGOverlay.m */,
+				C4561F9F1F32F1E900808825 /* EGOverlayRenderer.h */,
+				C4561FA01F32F1E900808825 /* EGOverlayRenderer.m */,
+				C4561FA51F3303ED00808825 /* GradientPolylineOverlay.h */,
+				C4561FA61F3303ED00808825 /* GradientPolylineOverlay.m */,
+				C4561FA81F33044800808825 /* GradientPolylineRenderer.h */,
+				C4561FA91F33044800808825 /* GradientPolylineRenderer.m */,
 			);
 			name = "Custom Class";
 			sourceTree = "<group>";
@@ -319,9 +339,13 @@
 				C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */,
 				C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */,
 				C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */,
+				C4561F9E1F32F15000808825 /* EGOverlay.m in Sources */,
 				C46AA95C1F270E2200DCE49B /* main.m in Sources */,
-				C46AA9911F2713A800DCE49B /* EGMapView.m in Sources */,
+				C4561FA41F33037800808825 /* EGPolylineOverLay.m in Sources */,
+				C4561FA11F32F1E900808825 /* EGOverlayRenderer.m in Sources */,
 				C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */,
+				C4561FA71F3303ED00808825 /* GradientPolylineOverlay.m in Sources */,
+				C4561FAA1F33044800808825 /* GradientPolylineRenderer.m in Sources */,
 				C4DD998F1F31B341000D40AF /* EGAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

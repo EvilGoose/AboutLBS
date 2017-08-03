@@ -20,8 +20,6 @@
 @end
 
 @interface EGAnnotationView : MKAnnotationView
-
-
 /**delegate*/
 @property (weak, nonatomic)id<EGAnnotationViewDelegate> delegate;
 

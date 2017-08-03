@@ -20,6 +20,8 @@ typedef enum : NSUInteger {
     kUserSelectedAddOverlay,
     kUserSelectedGeocoder,
     kUserSelectedDegeocoder,
+    kUserSelectedGuide,
+    kUserSelectedGradientLine
 } UserSelectedAction;
 
 
