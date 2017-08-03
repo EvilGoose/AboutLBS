@@ -194,15 +194,6 @@ EGAnnotationViewDelegate
     };
 }
 
-- (void)clearAll {
-    [self.mapView removeAnnotations:self.points];
-    [self.points removeAllObjects];
-    [self.annotations removeAllObjects];
-    
-    [self.mapView removeOverlays:self.overlays];
-    [self.overlays removeAllObjects];
-}
-
 #pragma mark - actions
 
 - (void)getGPSWithLocation:(CLLocation *)location {
@@ -307,12 +298,12 @@ EGAnnotationViewDelegate
 
 - (void)userLocationGeocode {
     [self.geocoder geocodeAddressString:@"湖北 武汉" completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        self.presentInfo = [NSString stringWithFormat:@"湖北 武汉 => \n  %f %f ",
-                                   placemarks.firstObject.region.center.latitude,
-                                   placemarks.firstObject.region.center.longitude
-                                 ];
+        CLCircularRegion *region = (CLCircularRegion *)placemarks.firstObject.region;
+        self.presentInfo = [NSString stringWithFormat:@"湖北 武汉 => \n %f %f ",
+                                   region.center.latitude,
+                                   region.center.longitude];
     }];
-}
+ }
 
 - (void)getCurrentHeading {
     [self.locationManager startUpdatingHeading];
@@ -382,6 +373,14 @@ EGAnnotationViewDelegate
     [self.mapView addOverlay:polyline];
 }
 
+- (void)clearAll {
+    [self.mapView removeAnnotations:self.points];
+    [self.points removeAllObjects];
+    [self.annotations removeAllObjects];
+    
+    [self.mapView removeOverlays:self.overlays];
+    [self.overlays removeAllObjects];
+}
 #pragma mark - location delegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations  {
@@ -407,7 +406,7 @@ EGAnnotationViewDelegate
     [self.points addObject:annotation];
     
     if ([annotation isKindOfClass:EGAnnotation.class]) {
-        EGAnnotationView *view = [mapView dequeueReusableAnnotationViewWithIdentifier:[EGAnnotation reusedID]];
+        EGAnnotationView *view = (EGAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:[EGAnnotation reusedID]];
         if (!view) {
             view = [[EGAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:[EGAnnotation reusedID]];
             view.delegate = self;

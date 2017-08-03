@@ -21,7 +21,6 @@
 @property (nonatomic, assign)CGFloat height;
 @property (nonatomic, assign)CGFloat speed;
 
-
-+ (NSString *)reusedID;
++ (NSString *_Nullable)reusedID;
 
 @end

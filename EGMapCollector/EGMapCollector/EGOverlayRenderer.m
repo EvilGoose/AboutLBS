@@ -29,8 +29,6 @@
         EGOverlay *overlay = (EGOverlay *)self.overlay;
         if (overlay == nil) return;
         
-        MKMapRect theMapRect = [self.overlay boundingMapRect];
-        CGRect theRect = [self rectForMapRect:theMapRect];
         
             // 绘制image
         CGContextMoveToPoint(context, 20, 100);
@@ -48,8 +46,8 @@
         CGContextSetLineCap(context,kCGLineCapButt);
             //渲染
         CGContextStrokePath(context);
-        
-        
+//			MKMapRect theMapRect = [self.overlay boundingMapRect];
+//		  CGRect theRect = [self rectForMapRect:theMapRect];
 //        CGImageRef imageReference = self.image.CGImage;
 //        CGContextScaleCTM(context, 1.0, -1.0);
 //        CGContextTranslateCTM(context, 0.0, -theRect.size.height);
