@@ -21,7 +21,8 @@ typedef enum : NSUInteger {
     kUserSelectedGeocoder,
     kUserSelectedDegeocoder,
     kUserSelectedGuide,
-    kUserSelectedGradientLine
+    kUserSelectedGradientLine,
+    kUserSelectedShowPOIS
 } UserSelectedAction;
 
 

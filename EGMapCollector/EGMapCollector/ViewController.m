@@ -13,6 +13,8 @@
 #import "SettingTableViewController.h"
 
 #import "EGAnnotation.h"
+#import "EGPOIAnnotation.h"
+#import "EGPOIAnnotationView.h"
 #import "EGOverlayRenderer.h"
 #import "GradientPolylineRenderer.h"
 
@@ -20,7 +22,8 @@
 <
 MKMapViewDelegate,
 CLLocationManagerDelegate,
-EGAnnotationViewDelegate
+EGAnnotationViewDelegate,
+EGPOIAnnotationViewDelegate
 >
 
 @property (strong, nonatomic)MKMapView *mapView;
@@ -144,9 +147,6 @@ EGAnnotationViewDelegate
         [self.mapView addOverlay:polyline];
      }
     
-    
-    
-    
 //    
 //    MKMapRect rect = {
 //        {0	, 0},
@@ -234,7 +234,7 @@ EGAnnotationViewDelegate
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)beginConfigurePath {
+- (void)beginConfigurePath:(NSString *)goalName {
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];//导航请求
     request.source = [MKMapItem mapItemForCurrentLocation];
     
@@ -262,6 +262,34 @@ EGAnnotationViewDelegate
     
     GradientPolylineOverlay *polyline = [[GradientPolylineOverlay alloc] initWithPoints:pointsCoordinate velocity:malloc(sizeof(float)*self.annotations.count) count:self.annotations.count];
     [self.mapView addOverlay:polyline];
+}
+
+- (void)showPOIS {
+        //创建一个位置信息对象，第一个参数为经纬度，第二个为纬度检索范围，单位为米，第三个为经度检索范围，单位为米
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.mapView.userLocation.coordinate, 3000, 3000);
+    
+        //初始化一个检索请求对象
+    MKLocalSearchRequest * req = [[MKLocalSearchRequest alloc]init];
+    
+    req.region=region;
+    req.naturalLanguageQuery = @"餐厅";
+    
+        //初始化检索
+    MKLocalSearch * ser = [[MKLocalSearch alloc]initWithRequest:req];
+    
+        //开始检索，结果返回在block中
+    [ser startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        NSArray * array = [NSArray arrayWithArray:response.mapItems];
+        for (int i=0; i<array.count; i++) {
+            MKMapItem * item=array[i];
+            EGPOIAnnotation * point = [[EGPOIAnnotation alloc]init];
+            point.title = item.name;
+            point.subtitle = item.phoneNumber;
+            point.coordinate=item.placemark.coordinate;
+            [self.mapView addAnnotation:point];
+        }
+    }];
 }
 
 - (void)clearAll {
@@ -358,7 +386,7 @@ EGAnnotationViewDelegate
         case kUserSelectedGuide:
       {
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"到武夷山的路线" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self beginConfigurePath];
+            [self beginConfigurePath:@"武夷山"];
         }];
         [alert addAction:action];
       }
@@ -368,6 +396,15 @@ EGAnnotationViewDelegate
       {
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"自定义连线添加" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self addGradientLine];
+        }];
+        [alert addAction:action];
+      }
+            break;
+            
+        case kUserSelectedShowPOIS:
+      {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"附近三千米的餐厅" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self showPOIS];
         }];
         [alert addAction:action];
       }
@@ -447,9 +484,16 @@ EGAnnotationViewDelegate
             view.delegate = self;
         }
         return view;
-    }else {
-        return  nil;//对于系统的大头针，我们直接可以返回nil，仍然会被渲染
+        
+    }else if([annotation isKindOfClass:EGPOIAnnotation.class]){
+        EGPOIAnnotationView *view = (EGPOIAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:[EGAnnotation reusedID]];
+        if (!view) {
+            view = [[EGPOIAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:[EGPOIAnnotation reusedID]];
+            view.delegate = self;
+        }
+        return view;
     }
+    return  nil;//对于系统的大头针，我们直接可以返回nil，仍然会被渲染
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
@@ -466,8 +510,8 @@ EGAnnotationViewDelegate
     }else if ([overlay isKindOfClass:[MKPolyline class]]){
         MKPolylineRenderer *render = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
         render.lineWidth = 3.f;
-        if (self.actionState == kUserSelectedGuide) {
-            render.strokeColor = [UIColor greenColor];
+        if ((self.actionState == kUserSelectedGuide) || (self.actionState == kUserSelectedShowPOIS)) {
+            render.strokeColor = [UIColor purpleColor];
         }else {
             render.strokeColor = [UIColor orangeColor];
             render.lineDashPattern = @[@3, @10];//虚线
@@ -531,6 +575,28 @@ EGAnnotationViewDelegate
 
 - (void)didClickedAnnotationViewButton:(EGAnnotationView *)view {
     NSLog(@"点击了按钮");
+}
+
+- (void)didClickedAnnotationViewPathConfigureButton:(EGPOIAnnotationView *)view {
+//    NSLog(@"路线到 %@ %f %f", view.POIAnnotation.title,  view.POIAnnotation.coordinate.latitude, view.POIAnnotation.coordinate.longitude);
+    
+    [self.mapView removeOverlays:self.overlays];
+    [self.overlays removeAllObjects];
+
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];//导航请求
+    request.source = [MKMapItem mapItemForCurrentLocation];
+    
+    //终点
+    request.destination = [[MKMapItem alloc]initWithPlacemark:[[MKPlacemark alloc]initWithCoordinate:view.POIAnnotation.coordinate]];
+    
+    MKDirections *directions = [[MKDirections alloc]initWithRequest:request];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
+        if (error)  return ;
+        for (MKRoute *route in response.routes) {
+            [self.mapView addOverlay:route.polyline];
+        }
+    }];
+
 }
 
 #pragma mark - lazy

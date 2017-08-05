@@ -21,6 +21,8 @@
 		C46AA9801F270E2400DCE49B /* EGMapCollectorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA97F1F270E2400DCE49B /* EGMapCollectorUITests.m */; };
 		C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9961F27172300DCE49B /* SettingTableViewController.m */; };
 		C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9991F2720D600DCE49B /* ActionRouter.m */; };
+		C48389271F35B15000D2C7FD /* EGPOIAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C48389261F35B15000D2C7FD /* EGPOIAnnotation.m */; };
+		C483892A1F35B35A00D2C7FD /* EGPOIAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C48389291F35B35A00D2C7FD /* EGPOIAnnotationView.m */; };
 		C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B788A51F31979500756C4A /* EGAnnotation.m */; };
 		C4DD998F1F31B341000D40AF /* EGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4DD998E1F31B341000D40AF /* EGAnnotationView.m */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,10 @@
 		C46AA9981F2720D600DCE49B /* ActionRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRouter.h; sourceTree = "<group>"; };
 		C46AA9991F2720D600DCE49B /* ActionRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRouter.m; sourceTree = "<group>"; };
 		C46AA99B1F27244200DCE49B /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C48389251F35B15000D2C7FD /* EGPOIAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGPOIAnnotation.h; sourceTree = "<group>"; };
+		C48389261F35B15000D2C7FD /* EGPOIAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGPOIAnnotation.m; sourceTree = "<group>"; };
+		C48389281F35B35A00D2C7FD /* EGPOIAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGPOIAnnotationView.h; sourceTree = "<group>"; };
+		C48389291F35B35A00D2C7FD /* EGPOIAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGPOIAnnotationView.m; sourceTree = "<group>"; };
 		C4B788A41F31979500756C4A /* EGAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGAnnotation.h; sourceTree = "<group>"; };
 		C4B788A51F31979500756C4A /* EGAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGAnnotation.m; sourceTree = "<group>"; };
 		C4DD998D1F31B341000D40AF /* EGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGAnnotationView.h; sourceTree = "<group>"; };
@@ -186,6 +192,10 @@
 				C4B788A51F31979500756C4A /* EGAnnotation.m */,
 				C4DD998D1F31B341000D40AF /* EGAnnotationView.h */,
 				C4DD998E1F31B341000D40AF /* EGAnnotationView.m */,
+				C48389251F35B15000D2C7FD /* EGPOIAnnotation.h */,
+				C48389261F35B15000D2C7FD /* EGPOIAnnotation.m */,
+				C48389281F35B35A00D2C7FD /* EGPOIAnnotationView.h */,
+				C48389291F35B35A00D2C7FD /* EGPOIAnnotationView.m */,
 				C4561FA21F33037800808825 /* EGPolylineOverLay.h */,
 				C4561FA31F33037800808825 /* EGPolylineOverLay.m */,
 				C4561F9C1F32F15000808825 /* EGOverlay.h */,
@@ -339,6 +349,8 @@
 				C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */,
 				C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */,
 				C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */,
+				C483892A1F35B35A00D2C7FD /* EGPOIAnnotationView.m in Sources */,
+				C48389271F35B15000D2C7FD /* EGPOIAnnotation.m in Sources */,
 				C4561F9E1F32F15000808825 /* EGOverlay.m in Sources */,
 				C46AA95C1F270E2200DCE49B /* main.m in Sources */,
 				C4561FA41F33037800808825 /* EGPolylineOverLay.m in Sources */,

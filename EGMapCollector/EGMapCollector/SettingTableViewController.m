@@ -40,11 +40,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
-    
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
-        cell.textLabel.text = self.titles[indexPath.row];
     }
+    
+    cell.textLabel.text = self.titles[indexPath.row];
     return cell;
 }
 
@@ -63,6 +63,7 @@
                     @"添加系统覆盖",
                     @"添加自定义覆盖",
                     @"路线规划",
+                    @"兴趣点"
                     ];
 	}
     
@@ -82,7 +83,8 @@
                     @"地理编码":@(kUserSelectedGeocoder),
                     @"反地理编码":@(kUserSelectedDegeocoder),
                     @"路线规划":@(kUserSelectedGuide),
-                    @"自定义覆盖":@(kUserSelectedGradientLine)
+                    @"自定义覆盖":@(kUserSelectedGradientLine),
+                    @"兴趣点":@(kUserSelectedShowPOIS)
                     };
     }
     return _titlesMapDict;
