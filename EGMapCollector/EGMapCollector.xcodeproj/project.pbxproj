@@ -25,6 +25,7 @@
 		C483892A1F35B35A00D2C7FD /* EGPOIAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C48389291F35B35A00D2C7FD /* EGPOIAnnotationView.m */; };
 		C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B788A51F31979500756C4A /* EGAnnotation.m */; };
 		C4DD998F1F31B341000D40AF /* EGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4DD998E1F31B341000D40AF /* EGAnnotationView.m */; };
+		C4E460AA1F3C081000920C0F /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E460A91F3C081000920C0F /* UIImage+Rotate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		C4B788A51F31979500756C4A /* EGAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGAnnotation.m; sourceTree = "<group>"; };
 		C4DD998D1F31B341000D40AF /* EGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGAnnotationView.h; sourceTree = "<group>"; };
 		C4DD998E1F31B341000D40AF /* EGAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGAnnotationView.m; sourceTree = "<group>"; };
+		C4E460A81F3C081000920C0F /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		C4E460A91F3C081000920C0F /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				C46AA95E1F270E2300DCE49B /* AppDelegate.m */,
 				C46AA9601F270E2300DCE49B /* ViewController.h */,
 				C46AA9611F270E2300DCE49B /* ViewController.m */,
+				C4E460A81F3C081000920C0F /* UIImage+Rotate.h */,
+				C4E460A91F3C081000920C0F /* UIImage+Rotate.m */,
 				C46AA9951F27172300DCE49B /* SettingTableViewController.h */,
 				C46AA9961F27172300DCE49B /* SettingTableViewController.m */,
 				C46AA9981F2720D600DCE49B /* ActionRouter.h */,
@@ -353,6 +358,7 @@
 				C48389271F35B15000D2C7FD /* EGPOIAnnotation.m in Sources */,
 				C4561F9E1F32F15000808825 /* EGOverlay.m in Sources */,
 				C46AA95C1F270E2200DCE49B /* main.m in Sources */,
+				C4E460AA1F3C081000920C0F /* UIImage+Rotate.m in Sources */,
 				C4561FA41F33037800808825 /* EGPolylineOverLay.m in Sources */,
 				C4561FA11F32F1E900808825 /* EGOverlayRenderer.m in Sources */,
 				C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */,
