@@ -63,7 +63,7 @@
                     @"添加系统覆盖",
                     @"添加自定义覆盖",
                     @"路线规划",
-                    @"兴趣点"
+                    @"找餐厅"
                     ];
 	}
     
@@ -79,12 +79,12 @@
                     @"区域检测":@(kUserSelectedJudgeZone),
                     @"添加系统大头针":@(kUserSelectedAddAnnotation),
                     @"添加自定义大头针":@(kUserSelectedAddCustomAnnotation),
-                    @"添加覆盖":@(kUserSelectedAddOverlay),
+                    @"添加系统覆盖":@(kUserSelectedAddOverlay),
                     @"地理编码":@(kUserSelectedGeocoder),
                     @"反地理编码":@(kUserSelectedDegeocoder),
                     @"路线规划":@(kUserSelectedGuide),
-                    @"自定义覆盖":@(kUserSelectedGradientLine),
-                    @"兴趣点":@(kUserSelectedShowPOIS)
+                    @"添加自定义覆盖":@(kUserSelectedGradientLine),
+                    @"找餐厅":@(kUserSelectedShowPOIS)
                     };
     }
     return _titlesMapDict;

@@ -147,7 +147,28 @@ EGPOIAnnotationViewDelegate
         [self.mapView addOverlay:polyline];
      }
     
-//    
+        //构造多边形数据对象
+    CLLocationCoordinate2D coordinates[6];
+    coordinates[0].latitude = 30.493777;
+    coordinates[0].longitude = 114.380868;
+    
+    coordinates[1].latitude = 30.476847;
+    coordinates[1].longitude = 114.415938;
+    
+    coordinates[2].latitude = 30.45842;
+    coordinates[2].longitude = 114.382018;
+    
+    coordinates[3].latitude = 30.453439;
+    coordinates[3].longitude = 114.341774;
+    
+    coordinates[4].latitude = 30.466887;
+    coordinates[4].longitude = 114.325101;
+    
+    coordinates[5].latitude = 30.482823;
+    coordinates[5].longitude = 114.33315;
+    MKPolygon *polygon = [MKPolygon polygonWithCoordinates:coordinates count:6];
+    [self.mapView addOverlay:polygon];
+
 //    MKMapRect rect = {
 //        {0	, 0},
 //        {100, 100}
@@ -198,13 +219,25 @@ EGPOIAnnotationViewDelegate
 }
 
 - (void)monitorEnterRegion {
+    CGFloat radius = 600;
     CLLocationCoordinate2D center =  CLLocationCoordinate2DMake(30.46800722, 114.42189969);
-    MKCircle *effectiveCircle = [MKCircle circleWithCenterCoordinate:center radius:500];
+    
+    MKCircle *effectiveCircle = [MKCircle circleWithCenterCoordinate:center
+                                                              radius:radius];
     [self.mapView addOverlay:effectiveCircle];
     
-    CLRegion *region = [[CLCircularRegion alloc]initWithCenter:center radius:500 identifier:@"monitorRegionID"];
-    [self.locationManager startMonitoringForRegion:region];
- }
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:center
+                                                                radius:radius
+                                                            identifier:@"monitorRegionID"];
+    if ([region containsCoordinate:self.mapView.userLocation.coordinate]) {
+        self.presentInfo = @"已经在区域内";
+    }else {
+        self.presentInfo = @"当前不在区域内";
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.locationManager startMonitoringForRegion:region];
+        });
+    }
+}
 
 - (void)caculateDistanceBetweenTwoLocation {
     [self clearAll];
@@ -220,11 +253,9 @@ EGPOIAnnotationViewDelegate
                         [firstLocation distanceFromLocation:lastLocation]];
     
     MKCoordinateRegion region =
-  {CLLocationCoordinate2DMake
-        (
-         .5 * (self.annotations.firstObject.coordinate.latitude + self.annotations.lastObject.coordinate.latitude),
-         .5 * (self.annotations.firstObject.coordinate.longitude + self.annotations.lastObject.coordinate.longitude)
-         ),
+    {CLLocationCoordinate2DMake(
+                                .5 * (self.annotations.firstObject.coordinate.latitude + self.annotations.lastObject.coordinate.latitude),
+                                .5 * (self.annotations.firstObject.coordinate.longitude + self.annotations.lastObject.coordinate.longitude)),
       {
         1.3 * fabs(self.annotations.firstObject.coordinate.latitude - self.annotations.lastObject.coordinate.latitude),
         1.3 * fabs(self.annotations.firstObject.coordinate.longitude - self.annotations.lastObject.coordinate.longitude)
@@ -360,7 +391,7 @@ EGPOIAnnotationViewDelegate
             break;
         case kUserSelectedAddOverlay:
       {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"添加各种覆盖" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"添加各种系统覆盖" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self addOverlays];
         }];
         [alert addAction:action];
@@ -501,11 +532,17 @@ EGPOIAnnotationViewDelegate
     
      if ([overlay isKindOfClass:[MKCircle class]]) {
         MKCircleRenderer *circleRend = [[MKCircleRenderer alloc] initWithCircle:overlay];
-        circleRend.lineWidth = 3;
-        circleRend.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.1];;
-        circleRend.strokeColor = [UIColor blueColor];
+        circleRend.lineWidth = 3.f;
+         if (self.actionState == kUserSelectedJudgeZone) {
+             circleRend.strokeColor = [UIColor redColor];
+             circleRend.fillColor = [UIColor colorWithRed:1 green:.1 blue:.1 alpha:.1];;
 
-         return circleRend;
+         }else {
+             circleRend.strokeColor = [UIColor blueColor];
+             circleRend.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.1];;
+         }
+
+        return circleRend;
          
     }else if ([overlay isKindOfClass:[MKPolyline class]]){
         MKPolylineRenderer *render = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
@@ -518,6 +555,14 @@ EGPOIAnnotationViewDelegate
         }
         
         return render;
+        
+    }else if([overlay isKindOfClass:[MKPolygon class]]) {
+        MKPolygonRenderer *polygonRenderer = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
+        polygonRenderer.lineWidth = 3.f;
+        polygonRenderer.strokeColor = [UIColor greenColor];
+        polygonRenderer.fillColor = [UIColor colorWithRed:.4 green:.2 blue:.8 alpha:.3];
+        
+        return polygonRenderer;
         
     }else if([overlay isKindOfClass:[EGOverlay class]]){
         EGOverlayRenderer *render = [[EGOverlayRenderer alloc] initWithOverlay:overlay];
