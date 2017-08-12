@@ -12,6 +12,10 @@
 		C4561FA41F33037800808825 /* EGPolylineOverLay.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561FA31F33037800808825 /* EGPolylineOverLay.m */; };
 		C4561FA71F3303ED00808825 /* GradientPolylineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561FA61F3303ED00808825 /* GradientPolylineOverlay.m */; };
 		C4561FAA1F33044800808825 /* GradientPolylineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4561FA91F33044800808825 /* GradientPolylineRenderer.m */; };
+		C464AD1D1F3ECC5100341AAF /* CLLocation+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = C464AD161F3ECC5100341AAF /* CLLocation+Transformation.m */; };
+		C464AD1E1F3ECC5100341AAF /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C464AD181F3ECC5100341AAF /* NSArray+Extension.m */; };
+		C464AD1F1F3ECC5100341AAF /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C464AD1A1F3ECC5100341AAF /* NSDictionary+Extension.m */; };
+		C464AD201F3ECC5100341AAF /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = C464AD1C1F3ECC5100341AAF /* UIImage+Rotate.m */; };
 		C46AA95C1F270E2200DCE49B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA95B1F270E2200DCE49B /* main.m */; };
 		C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA95E1F270E2300DCE49B /* AppDelegate.m */; };
 		C46AA9621F270E2300DCE49B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46AA9611F270E2300DCE49B /* ViewController.m */; };
@@ -25,7 +29,6 @@
 		C483892A1F35B35A00D2C7FD /* EGPOIAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C48389291F35B35A00D2C7FD /* EGPOIAnnotationView.m */; };
 		C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B788A51F31979500756C4A /* EGAnnotation.m */; };
 		C4DD998F1F31B341000D40AF /* EGAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4DD998E1F31B341000D40AF /* EGAnnotationView.m */; };
-		C4E460AA1F3C081000920C0F /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E460A91F3C081000920C0F /* UIImage+Rotate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,14 @@
 		C4561FA61F3303ED00808825 /* GradientPolylineOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientPolylineOverlay.m; sourceTree = "<group>"; };
 		C4561FA81F33044800808825 /* GradientPolylineRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientPolylineRenderer.h; sourceTree = "<group>"; };
 		C4561FA91F33044800808825 /* GradientPolylineRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientPolylineRenderer.m; sourceTree = "<group>"; };
+		C464AD151F3ECC5100341AAF /* CLLocation+Transformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Transformation.h"; sourceTree = "<group>"; };
+		C464AD161F3ECC5100341AAF /* CLLocation+Transformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Transformation.m"; sourceTree = "<group>"; };
+		C464AD171F3ECC5100341AAF /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
+		C464AD181F3ECC5100341AAF /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
+		C464AD191F3ECC5100341AAF /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
+		C464AD1A1F3ECC5100341AAF /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
+		C464AD1B1F3ECC5100341AAF /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		C464AD1C1F3ECC5100341AAF /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 		C46AA9571F270E2100DCE49B /* EGMapCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EGMapCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C46AA95B1F270E2200DCE49B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C46AA95D1F270E2300DCE49B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,8 +95,6 @@
 		C4B788A51F31979500756C4A /* EGAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGAnnotation.m; sourceTree = "<group>"; };
 		C4DD998D1F31B341000D40AF /* EGAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGAnnotationView.h; sourceTree = "<group>"; };
 		C4DD998E1F31B341000D40AF /* EGAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGAnnotationView.m; sourceTree = "<group>"; };
-		C4E460A81F3C081000920C0F /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
-		C4E460A91F3C081000920C0F /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +122,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C464AD141F3ECC1100341AAF /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C464AD151F3ECC5100341AAF /* CLLocation+Transformation.h */,
+				C464AD161F3ECC5100341AAF /* CLLocation+Transformation.m */,
+				C464AD1B1F3ECC5100341AAF /* UIImage+Rotate.h */,
+				C464AD1C1F3ECC5100341AAF /* UIImage+Rotate.m */,
+				C464AD171F3ECC5100341AAF /* NSArray+Extension.h */,
+				C464AD181F3ECC5100341AAF /* NSArray+Extension.m */,
+				C464AD191F3ECC5100341AAF /* NSDictionary+Extension.h */,
+				C464AD1A1F3ECC5100341AAF /* NSDictionary+Extension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		C46AA94E1F270E2100DCE49B = {
 			isa = PBXGroup;
 			children = (
@@ -140,12 +164,11 @@
 				C46AA95E1F270E2300DCE49B /* AppDelegate.m */,
 				C46AA9601F270E2300DCE49B /* ViewController.h */,
 				C46AA9611F270E2300DCE49B /* ViewController.m */,
-				C4E460A81F3C081000920C0F /* UIImage+Rotate.h */,
-				C4E460A91F3C081000920C0F /* UIImage+Rotate.m */,
 				C46AA9951F27172300DCE49B /* SettingTableViewController.h */,
 				C46AA9961F27172300DCE49B /* SettingTableViewController.m */,
 				C46AA9981F2720D600DCE49B /* ActionRouter.h */,
 				C46AA9991F2720D600DCE49B /* ActionRouter.m */,
+				C464AD141F3ECC1100341AAF /* Category */,
 				C4B788A31F31976D00756C4A /* Custom Class */,
 				C46AA98D1F2710E600DCE49B /* Source */,
 				C46AA95A1F270E2200DCE49B /* Supporting Files */,
@@ -354,16 +377,19 @@
 				C4B788A61F31979500756C4A /* EGAnnotation.m in Sources */,
 				C46AA95F1F270E2300DCE49B /* AppDelegate.m in Sources */,
 				C46AA99A1F2720D600DCE49B /* ActionRouter.m in Sources */,
+				C464AD1E1F3ECC5100341AAF /* NSArray+Extension.m in Sources */,
 				C483892A1F35B35A00D2C7FD /* EGPOIAnnotationView.m in Sources */,
 				C48389271F35B15000D2C7FD /* EGPOIAnnotation.m in Sources */,
 				C4561F9E1F32F15000808825 /* EGOverlay.m in Sources */,
 				C46AA95C1F270E2200DCE49B /* main.m in Sources */,
-				C4E460AA1F3C081000920C0F /* UIImage+Rotate.m in Sources */,
+				C464AD1F1F3ECC5100341AAF /* NSDictionary+Extension.m in Sources */,
 				C4561FA41F33037800808825 /* EGPolylineOverLay.m in Sources */,
 				C4561FA11F32F1E900808825 /* EGOverlayRenderer.m in Sources */,
 				C46AA9971F27172300DCE49B /* SettingTableViewController.m in Sources */,
 				C4561FA71F3303ED00808825 /* GradientPolylineOverlay.m in Sources */,
+				C464AD1D1F3ECC5100341AAF /* CLLocation+Transformation.m in Sources */,
 				C4561FAA1F33044800808825 /* GradientPolylineRenderer.m in Sources */,
+				C464AD201F3ECC5100341AAF /* UIImage+Rotate.m in Sources */,
 				C4DD998F1F31B341000D40AF /* EGAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

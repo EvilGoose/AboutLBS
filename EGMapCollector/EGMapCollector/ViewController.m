@@ -18,6 +18,8 @@
 #import "EGOverlayRenderer.h"
 #import "GradientPolylineRenderer.h"
 
+#import "CLLocation+Transformation.h"
+
 @interface ViewController ()
 <
 MKMapViewDelegate,
@@ -194,8 +196,18 @@ EGPOIAnnotationViewDelegate
 }
 
 - (void)userLocationReverseGeocode {
-    CLLocation *location = [[CLLocation alloc]initWithLatitude:self.mapView.userLocation.coordinate.latitude longitude:self.mapView.userLocation.coordinate.longitude];
+//    CLLocation *location = [[CLLocation alloc] initWithLatitude:22.535706 longitude:120.783135] ;
+//    MKPointAnnotation *point = [[MKPointAnnotation alloc]init];
+//    point.coordinate = location.coordinate;
+//    [self.mapView addAnnotation:point];
+    
+    CLLocation *location = [[CLLocation alloc]initWithLatitude:self.mapView.userLocation.coordinate.latitude
+                                                     longitude:self.mapView.userLocation.coordinate.longitude];
+    
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        NSLog(@"当前位置:%@ %@", placemarks.firstObject.addressDictionary,
+              [CLLocation locationInMainlandChina:placemarks.lastObject] ? @"大陆":@"非大陆");
         
         self.presentInfo = [NSString stringWithFormat:@"%f %f  \n => %@",
                                    self.mapView.userLocation.coordinate.latitude,
