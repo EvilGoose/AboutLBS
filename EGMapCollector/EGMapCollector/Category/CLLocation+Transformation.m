@@ -8,6 +8,25 @@
 
 #import "CLLocation+Transformation.h"
 
+static double transformLatitude(double x, double y) {
+    double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * sqrt(fabs(x));
+    ret += (20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0;
+    ret += (20.0 * sin(y * M_PI) + 40.0 * sin(y / 3.0 * M_PI)) * 2.0 / 3.0;
+    ret += (160.0 * sin(y / 12.0 * M_PI) + 320 * sin(y * M_PI / 30.0)) * 2.0 / 3.0;
+    return ret;
+}
+
+static double transformLongitude(double x, double y) {
+    double ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * sqrt(fabs(x));
+    ret += (20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0;
+    ret += (20.0 * sin(x * M_PI) + 40.0 * sin(x / 3.0 * M_PI)) * 2.0 / 3.0;
+    ret += (150.0 * sin(x / 12.0 * M_PI) + 300.0 * sin(x / 30.0 * M_PI)) * 2.0 / 3.0;
+    return ret;
+}
+
+
+
+
 @implementation CLLocation (Transformation)
 
 /**是否定位在中国大陆*/
@@ -52,14 +71,30 @@
     }
 }
 
+const double ee = 0.00669342162296594323;
+const double a = 6378245.0;
+
 /**从火星坐标系(GCJ-02) 到 大地坐标系(WGS-84) 的转换算法*/
 - (CLLocation *)transformMarsToEarth{
- 	return nil;
+   	return nil; 
 }
 
 /**从大地坐标系(WGS-84) 到 火星坐标系(GCJ-02) 的转换算法 */
 - (CLLocation *)transformEarthToMars{
-	return nil;
+    CLLocationCoordinate2D coordinate = self.coordinate;
+    double latitude = transformLatitude(coordinate.longitude - 105.0, coordinate.latitude - 35.0);
+    double longitude = transformLongitude(coordinate.longitude - 105.0, coordinate.latitude - 35.0);
+    
+    double temp1 = coordinate.latitude / 180.0 * M_PI;
+    double temp2 = sin(temp1);
+    double temp3 = sqrt(temp2);
+    
+    temp2 = 1 - ee * temp2 * temp2;
+    latitude = (latitude * 180.0) / ((a * (1 - ee)) / (temp2 * temp3) * M_PI);
+    longitude = (longitude * 180.0) / (a / temp3 * cos(temp1) * M_PI);
+    
+    return [[CLLocation alloc]initWithLatitude:(coordinate.latitude + latitude)
+                                     longitude:(coordinate.longitude + longitude)];
 }
 
 /**从百度坐标系 (BD-09) 到 大地坐标系(WGS-84) 的转换算法*/
